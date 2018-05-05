@@ -10,9 +10,8 @@ const Polygon = require('./models/polygon');
 const MongoClient = require('mongodb').MongoClient;
 var mongoURL = "mongodb://MongoDB-Dev1:1234@dyetheworld-dev-shard-00-00-si1d6.mongodb.net:27017,dyetheworld-dev-shard-00-01-si1d6.mongodb.net:27017,dyetheworld-dev-shard-00-02-si1d6.mongodb.net:27017/DyeTheWorldDB?ssl=true&replicaSet=DyeTheWorld-Dev-shard-0&authSource=admin";
 mongoose.connect(mongoURL, {
-	useMongoClient: true
-	}
-);
+	useMongoClient: true	
+});
 // For at de enkelte filer kan anvendes fra browser:
 app.use(bodyParser.urlencoded({extended : true}));
 
@@ -56,6 +55,7 @@ app.post('/createpoint', (req, res, next) => {
 	const point = new Point({
 		_id: new mongoose.Types.ObjectId(),
 		ID: req.body.ID,
+		PolygonID: req.body.PolygonID,
 		Latitude: req.body.Latitude,
 		Longitude: req.body.Longitude
 		//Date: req.body.Date
