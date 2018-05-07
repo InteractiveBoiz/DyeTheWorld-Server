@@ -34,10 +34,10 @@ app.get('/points', function(req, res)
 app.post('/createpoint', (req, res, next) => {  
 	const point = new Point({
 		_id: new mongoose.Types.ObjectId(),
-		ID: req.body.ID,
-		PolygonID: req.body.PolygonID,
-		Latitude: req.body.Latitude,
-		Longitude: req.body.Longitude
+		//ID: req.body.ID,
+		_polygonID: req.body._polygonID,
+		latitude: req.body.latitude,
+		longitude: req.body.longitude
 		//Date: req.body.Date
 	});
 	point.save().then(result => {

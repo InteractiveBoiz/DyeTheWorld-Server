@@ -29,14 +29,22 @@ app.get('/players', function(req, res)
 	});
 });
 
+// READ (one) (NOT WORKING YET)
+app.get('/players/:id', (req, res, next) => {
+  res.status(200).json({
+      message: 'Player loaded',
+      PlayerID: res.params.id
+  });
+});
+
 // CREATE
 app.post('/createplayer', (req, res, next) => {  
 	const player = new Player({
 		_id: new mongoose.Types.ObjectId(),
-		Team_ID: req.body.Team_ID,
-		Username: req.body.Username,
-		Password: req.body.Password,
-		TotalDistance: req.body.TotalDistance
+		_teamID: req.body._teamID,
+		username: req.body.username,
+		password: req.body.password,
+		totalDistance: req.body.totalDistance
 		//Date: req.body.Date
 	});
 	player.save().then(result => {
