@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/InteractiveBoiz/DyeTheWorld-Server#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.9.9"
   }
 }
