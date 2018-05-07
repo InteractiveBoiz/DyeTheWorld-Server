@@ -13,9 +13,6 @@ mongoose.connect(mongoURL, {
 	useMongoClient: true	
 });
 
-
-// For at css skal kunne anvendes
-
 app.use(bodyParser.json());
 
 app.get('/points', function(req, res)

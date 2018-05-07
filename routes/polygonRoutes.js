@@ -15,8 +15,6 @@ mongoose.connect(mongoURL, {
 // For at de enkelte filer kan anvendes fra browser:
 app.use(bodyParser.urlencoded({extended : true}));
 
-// For at css skal kunne anvendes
-
 app.use(bodyParser.json());
 
 app.get('/polygons', function(req, res)
