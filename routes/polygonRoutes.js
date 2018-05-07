@@ -37,9 +37,9 @@ app.post('/createpolygon', (req, res, next) => {
 
 	const polygon = new Polygon({
 		_id: new mongoose.Types.ObjectId(),
-		ID: req.body.ID,
-		TeamID: req.body.TeamID,
-		AreaImperial: req.body.AreaImperial
+		//ID: req.body.ID,
+		_teamID: req.body._teamID,
+		areaImperial: req.body.areaImperial
 		//Date: req.body.Date
 	});
 	polygon
