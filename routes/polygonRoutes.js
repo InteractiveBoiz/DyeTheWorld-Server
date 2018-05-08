@@ -48,7 +48,7 @@ app.post('/createpolygon', (req, res, next) => {
 		.then(result => {
 			console.log(result);
 			res.status(201).json({
-				_id: polygon._id,
+				_id: result._id,
 				message: "Handling POST requests to /createpolygon",
 				createdPolygon: result
 			});
