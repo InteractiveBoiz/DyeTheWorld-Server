@@ -42,11 +42,13 @@ app.post('/createpolygon', (req, res, next) => {
 		areaImperial: req.body.areaImperial
 		//Date: req.body.Date
 	});
+	
 	polygon
 		.save()
 		.then(result => {
 			console.log(result);
 			res.status(201).json({
+				_id: result._id,
 				message: "Handling POST requests to /createpolygon",
 				createdPolygon: result
 			});
