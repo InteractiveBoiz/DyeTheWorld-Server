@@ -29,12 +29,14 @@ app.get('/players', function(req, res)
 	});
 });
 
-// READ (one) (NOT WORKING YET)
+// READ (one)
 app.get('/players/:id', (req, res, next) => {
-  res.status(200).json({
-      message: 'Player loaded',
-      PlayerID: res.params.id
-  });
+	Player.findById(req.params.id)
+	.then(playerFound => {
+		if (!playerFound) { return res.status(404).end(); }
+		return res.status(200).json(playerFound);
+	})
+	.catch(err => next(err));
 });
 
 // CREATE

@@ -14,4 +14,7 @@ app.use(polygonModule);
 const playerModule = require('./routes/playerRoutes');
 app.use(playerModule);
 
+const teamModule = require('./routes/teamRoutes');
+app.use(teamModule);
+
 app.listen(process.env.PORT || 3000);
