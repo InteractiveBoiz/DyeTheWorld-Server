@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 // Makes it possible to access several files containing routes without it crashing.
-var cors = require('cors');
+const cors = require('cors');
 app.use(cors()); 	
 
 const pointModule = require('./routes/pointRoute');
