@@ -8,6 +8,7 @@ const Player = require('../models/player');
 
 const MongoClient = require('mongodb').MongoClient;
 var mongoURL = "mongodb://MongoDB-Dev1:1234@dyetheworld-dev-shard-00-00-si1d6.mongodb.net:27017,dyetheworld-dev-shard-00-01-si1d6.mongodb.net:27017,dyetheworld-dev-shard-00-02-si1d6.mongodb.net:27017/DyeTheWorldDB?ssl=true&replicaSet=DyeTheWorld-Dev-shard-0&authSource=admin";
+
 mongoose.connect(mongoURL, {
 	useMongoClient: true	
 });
@@ -33,7 +34,9 @@ app.get('/players', function(req, res)
 app.get('/players/:id', (req, res, next) => {
 	Player.findById(req.params.id)
 	.then(playerFound => {
-		if (!playerFound) { return res.status(404).end(); }
+		if (!playerFound) { 
+			return res.status(404).end(); 
+		}
 		return res.status(200).json(playerFound);
 	})
 	.catch(err => next(err));
