@@ -42,6 +42,18 @@ app.get('/players/:id', (req, res, next) => {
 	.catch(err => next(err));
 });
 
+// READ (one, with email)
+app.get('/players/mail/:username', (req, res, next) => {
+	Player.find({"username" : {$regex : req.params.username}})
+	.then(playerFound => {
+		if (!playerFound) { 
+			return res.status(404).end(); 
+		}
+		return res.status(200).json(playerFound);
+	})
+	.catch(err => next(err));
+});
+
 // CREATE
 app.post('/createplayer', (req, res, next) => {  
 	const player = new Player({

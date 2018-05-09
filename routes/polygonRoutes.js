@@ -3,8 +3,9 @@ const app = express();
 
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+var ObjectId = require('mongodb').ObjectID;
 
-const Point = require('../models/point');
+const Point = require('../models/point'); // What is this used for?
 const Polygon = require('../models/polygon');
 
 const MongoClient = require('mongodb').MongoClient;
@@ -29,16 +30,28 @@ app.get('/polygons', function(req, res){
 		db.close();
 	});
 });
+
+// Sort by teamID
+app.get('/polygons/team/:_teamID', (req, res, next) => {  
+	Polygon.find({ "_teamID" : ObjectId(req.params._teamID)})
+	.then(polygonsFound => {
+		if (!polygonsFound) { 
+			return res.status(404).end(); 
+		}
+		return res.status(200).json(polygonsFound);
+	})
+	.catch(err => next(err));
+});
 		
 //Create polygon
 app.post('/createpolygon', (req, res, next) => {  
 
 	const polygon = new Polygon({
 		_id: new mongoose.Types.ObjectId(),
-		//ID: req.body.ID,
+		
 		_teamID: req.body._teamID,
 		areaImperial: req.body.areaImperial
-		//Date: req.body.Date
+		
 	});
 	
 	polygon
