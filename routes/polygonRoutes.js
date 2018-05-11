@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var ObjectId = require('mongodb').ObjectID;
 
-const Point = require('../models/point'); // What is this used for?
+const Team = require('../models/team');
 const Polygon = require('../models/polygon');
 
 const MongoClient = require('mongodb').MongoClient;
@@ -63,6 +63,8 @@ app.post('/createpolygon', (req, res, next) => {
 				message: "Handling POST requests to /createpolygon",
 				createdPolygon: result
 			});
+			Team.findOneAndUpdate({_id :req.body._teamID}, {$inc : {'score' : req.body.areaImperial}}).exec();
+
 		})
 		.catch(err => {
 			console.log(err);
